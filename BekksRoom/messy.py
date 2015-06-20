@@ -5,6 +5,9 @@ import pandas as pd
 
 def get_input(dataset):
     done = False
+    std = 'n'
+    avg = 'n'
+    hypothesis = 'n'
     avg = input("want the average? y/n ")
     clean = input("Want your data cleaned?  We drop zeros and nan. y/n ")
     columns = []
