@@ -1,11 +1,5 @@
-def average_minutes(data, activity_name):
-    # print(data)
-    activity_col = activity_name
-    data = data[["weight", activity_col]]
-    print(data)
-    data = data.rename(columns={activity_col: "minutes"})
-    data['weighted_minutes'] = data.weight * data.minutes
-    return data.weighted_minutes.sum() / data.weight.sum()
+from stats_functions import average_minutes, stdev_minutes
+from stats_functions import hypothesis_test_plot
 
 
 def get_input(dataset):
