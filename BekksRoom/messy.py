@@ -1,5 +1,5 @@
-from stats_functions import average_minutes, stdev_minutes
-from stats_functions import hypothesis_test_plot
+from BekksRoom.stats_functions import average_minutes, stdev_minutes
+from BekksRoom.stats_functions import hypothesis_test_plot
 
 
 def get_input(dataset):
