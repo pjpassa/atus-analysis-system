@@ -1,4 +1,4 @@
-tucaseid,household
+'tucaseid,household
 TUFINLWGT,weight
 TRYHHCHILD,Age_of_youngest_child
 TEAGE,Age
@@ -407,4 +407,4 @@ t500101,insufficient_detail
 t500103,missing_travel_or_destination
 t500105,respondent_refused_provide_information
 t500106,Gap/cant_remember
-t500107,unable_to_code_activity_1st_tier
+t500107,unable_to_code_activity_1st_tier'
