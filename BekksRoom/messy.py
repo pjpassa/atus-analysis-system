@@ -8,6 +8,7 @@ def get_input(dataset):
     std = 'n'
     avg = 'n'
     hypothesis = 'n'
+    going_to_use_groupby = 'n'
     avg = input("want the average? y/n ")
     clean = input("Want your data cleaned?  We drop zeros and nan. y/n ")
     columns = []
@@ -24,6 +25,11 @@ def get_input(dataset):
         if hypothesis == 'y':
             print("Automatically including weight because you want hypothesis test")
             columns.append('weight')
+    if avg != 'y' and std != 'y' and hypothesis != 'y':
+        going_to_use_groupby = input("Are you going to use groupby? y/n ")
+        if going_to_use_groupby == 'y':
+            print("Automatically including weight because you want to use groupby ")
+            columns.append('weight')
     for item in dataset.columns.tolist():
         print(item)
     while not done:
@@ -39,7 +45,7 @@ def get_input(dataset):
         else:
             print("Not in dataset")
         print(columns)
-    return(avg, clean, columns, std, hypothesis)
+    return(avg, clean, columns, std, hypothesis, going_to_use_groupby)
 
 
 def querys(datawork, query):
@@ -47,7 +53,7 @@ def querys(datawork, query):
 
 
 def datasets(dataset, query=None):
-    avg, clean, columns, std, hypothesis = get_input(dataset)
+    avg, clean, columns, std, hypothesis, going_to_use_groupby = get_input(dataset)
     # print(avg, clean, columns)
     data = dataset[columns]
     if query is not None:
@@ -77,6 +83,13 @@ def datasets(dataset, query=None):
                 data = data[data[item] > 0]
                 data = data.dropna()
                 # print(data)
+    if going_to_use_groupby == 'y':
+        while True:
+            column_to_group = input("What column would you like to group by? ")
+            if column_to_group in data:
+                return data.groupby(column_to_group)
+            else:
+                "Thats not in your columns"
     if hypothesis == 'y':
         group_var = input("What is your group variable?")
         test_var = input("What is your test variable?")
