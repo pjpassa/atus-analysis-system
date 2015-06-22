@@ -54,7 +54,7 @@ def querys(datawork, query):
 
 
 def graph_data(dataset):
-    wplot = input("What type of plot? bar or plot (more to come)")
+    wplot = input("What type of plot? bar or line (more to come)")
     if wplot == "bar":
         print(plt.style.available)
         plot_style = input("What style plot? Type it correctly!")
@@ -68,9 +68,9 @@ def graph_data(dataset):
         ylabels = input("y label?")
         grids = input("Want a grid True/False")
         ax = dataset.plot(kind="bar", figsize=(figuresize,figuresize), legend=eval(legends), stacked=eval(stacks))
-        ax.set_ylabel(xlabels)
+        ax.set_ylabel(ylabels)
         ax.grid(eval(grids), 'both')
-        ax.set_xlabel(ylabels)
+        ax.set_xlabel(xlabels)
         return ax
     if wplot == "line":
         print(plt.style.available)
@@ -80,14 +80,13 @@ def graph_data(dataset):
         figuresize = input("Whats your figure size, just enter one number no floats")
         figuresize = int(figuresize)
         legends = input("Want a legend True/False")
-        stacks = input("Want to stack it? True/False")
         xlabels = input("x label?")
         ylabels = input("y label?")
         grids = input("Want a grid True/False")
-        ax = dataset.plot(kind="bar", figsize=(figuresize,figuresize), legend=eval(legends), stacked=eval(stacks))
-        ax.set_ylabel(xlabels)
+        ax = dataset.plot(kind="line", figsize=(figuresize,figuresize), legend=eval(legends))
+        ax.set_ylabel(ylabels)
         ax.grid(eval(grids), 'both')
-        ax.set_xlabel(ylabels)
+        ax.set_xlabel(xlabels)
         return ax
 
 
