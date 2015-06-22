@@ -1,6 +1,7 @@
 from BekksRoom.stats_functions import average_minutes, stdev_minutes
 from BekksRoom.stats_functions import hypothesis_test_plot
 import pandas as pd
+import matplotlib as plt
 
 
 def get_input(dataset):
@@ -52,6 +53,44 @@ def querys(datawork, query):
     return datawork[query]
 
 
+def graph_data(dataset):
+    wplot = input("What type of plot? bar or plot (more to come)")
+    if wplot == "bar":
+        print(plt.style.available)
+        plot_style = input("What style plot? Type it correctly!")
+        plt.style.use(plot_style)
+        print("Your data sir ", dataset)
+        figuresize = input("Whats your figure size, just enter one number no floats")
+        figuresize = int(figuresize)
+        legends = input("Want a legend True/False")
+        stacks = input("Want to stack it? True/False")
+        xlabels = input("x label?")
+        ylabels = input("y label?")
+        grids = input("Want a grid True/False")
+        ax = dataset.plot(kind="bar", figsize=(figuresize,figuresize), legend=eval(legends), stacked=eval(stacks))
+        ax.set_ylabel(xlabels)
+        ax.grid(eval(grids), 'both')
+        ax.set_xlabel(ylabels)
+        return ax
+    if wplot == "line":
+        print(plt.style.available)
+        plot_style = input("What style plot? Type it correctly!")
+        plt.style.use(plot_style)
+        print("Your data sir ", dataset)
+        figuresize = input("Whats your figure size, just enter one number no floats")
+        figuresize = int(figuresize)
+        legends = input("Want a legend True/False")
+        stacks = input("Want to stack it? True/False")
+        xlabels = input("x label?")
+        ylabels = input("y label?")
+        grids = input("Want a grid True/False")
+        ax = dataset.plot(kind="bar", figsize=(figuresize,figuresize), legend=eval(legends), stacked=eval(stacks))
+        ax.set_ylabel(xlabels)
+        ax.grid(eval(grids), 'both')
+        ax.set_xlabel(ylabels)
+        return ax
+
+
 def datasets(dataset, query=None):
     avg, clean, columns, std, hypothesis, going_to_use_groupby = get_input(dataset)
     # print(avg, clean, columns)
@@ -94,4 +133,8 @@ def datasets(dataset, query=None):
         group_var = input("What is your group variable?")
         test_var = input("What is your test variable?")
         data = hypothesis_test_plot(data, group_var, test_var)
+    graphs = input("Want to graph your data? y/n")
+    if graphs == 'y':
+        plot = graph_data(data)
+        return(data, plot)
     return data
